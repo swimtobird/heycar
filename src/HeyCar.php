@@ -105,12 +105,24 @@ class HeyCar
         $result = json_decode($response->getBody(), true);
 
         if (isset($result['code']) && $result['code'] !== 200) {
-            throw new RequestException($result['msg'], $result['code']);
+            throw new RequestException($result['msg']??'', $result['code']);
         }
 
         return $result;
     }
 
+    protected function formatData(array $data)
+    {
+        if (!empty($data)){
+            foreach ($data as $key => $value){
+                if (is_array($value)){
+                    $data[$key] = json_encode($value);
+                }
+            }
+        }
+
+        return $data;
+    }
     protected function getSign(array $data): string
     {
         $data = array_merge($data, [
@@ -122,7 +134,7 @@ class HeyCar
         $result = '';
 
         foreach ($data as $key => $value) {
-            if ($value) {
+            if ($value && !is_array($value)) {
                 $result .= $key . $value;
             }
         }
