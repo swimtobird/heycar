@@ -136,6 +136,9 @@ class HeyCar
         foreach ($data as $key => $value) {
             if ($value){
                 if (!is_array($value)) {
+                    if (is_bool($value)){
+                        $value = $value?'true':'false';
+                    }
                     $result .= $key . $value;
                 }
                 if (is_array($value) && array_values($value) === $value){
