@@ -292,7 +292,7 @@ class HeyCar
      */
     public function getComplainReasons(string $token,string $order_sn)
     {
-        return $this->request('/platform/complain', [
+        return $this->request('/complaint/reason', [
             'orderId' => $order_sn,
         ], $token);
     }
