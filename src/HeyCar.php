@@ -134,8 +134,13 @@ class HeyCar
         $result = '';
 
         foreach ($data as $key => $value) {
-            if ($value && !is_array($value)) {
-                $result .= $key . $value;
+            if ($value){
+                if (!is_array($value)) {
+                    $result .= $key . $value;
+                }
+                if (is_array($value) && array_values($value) === $value){
+                    $result .= $key . json_encode($value);
+                }
             }
         }
         return sha1($result);
