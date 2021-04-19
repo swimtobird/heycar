@@ -237,6 +237,22 @@ class HeyCar
     }
 
     /**
+     * 保存订单取消原因
+     * @param string $token
+     * @param string $order_sn
+     * @param string $reason
+     * @return array
+     * @throws RequestException
+     */
+    public function setCancelReason(string $token, string $order_sn,string $reason)
+    {
+        return $this->request('/platform/cancelReason', [
+            'orderId' => $order_sn,
+            'reason'   => $reason
+        ], $token);
+    }
+
+    /**
      * 订单列表
      * @param string $token
      * @param int $page
