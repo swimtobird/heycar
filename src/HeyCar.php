@@ -339,7 +339,7 @@ class HeyCar
      */
     public function addEmployee(string $token,array $data)
     {
-        return $this->request('/platform/complain', $data, $token);
+        return $this->request('/common/addCompanyMembers', $data, $token);
     }
 
     /**
@@ -372,7 +372,7 @@ class HeyCar
         $data['channelId'] = $channel_id;
         $data['userId'] = $user_id;
 
-        return $this->request('/platform/complain', $data, $token);
+        return $this->request('/common/modifyCompanyMembers', $data, $token);
     }
 
     /**
